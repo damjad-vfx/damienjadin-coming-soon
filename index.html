@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Damien Jadin — Director, VFX Artist & Creative. New website coming soon." />
+  <title>Damien Jadin — Coming Soon</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050505;
+      --fg: #f5f5f2;
+      --muted: #a3a3a3;
+      --line: rgba(255,255,255,.16);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .page {
+      width: min(1120px, calc(100vw - 48px));
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 42px 0 34px;
+    }
+
+    .topbar, .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      font-size: 12px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .mark {
+      color: var(--fg);
+      font-weight: 700;
+    }
+
+    .hero {
+      padding: 10vh 0 8vh;
+    }
+
+    .eyebrow {
+      margin: 0 0 28px;
+      font-size: 13px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 980px;
+      font-size: clamp(58px, 10vw, 150px);
+      line-height: .88;
+      letter-spacing: -.06em;
+      font-weight: 700;
+    }
+
+    .sub {
+      margin: 34px 0 0;
+      max-width: 680px;
+      font-size: clamp(18px, 2.2vw, 28px);
+      line-height: 1.35;
+      color: #d2d2ce;
+    }
+
+    .divider {
+      height: 1px;
+      width: 100%;
+      margin-top: 54px;
+      background: linear-gradient(90deg, var(--fg), var(--line) 35%, transparent);
+      transform-origin: left center;
+      animation: reveal 1.8s ease both;
+    }
+
+    .contact {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 3px;
+      transition: border-color .2s ease, opacity .2s ease;
+    }
+
+    .contact:hover {
+      border-color: var(--fg);
+      opacity: .78;
+    }
+
+    @keyframes reveal {
+      from { transform: scaleX(0); opacity: 0; }
+      to { transform: scaleX(1); opacity: 1; }
+    }
+
+    @media (max-width: 700px) {
+      .page {
+        width: min(100% - 30px, 1120px);
+        padding: 28px 0 24px;
+      }
+
+      .topbar, .footer {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .hero { padding: 7vh 0; }
+
+      h1 {
+        font-size: clamp(52px, 18vw, 92px);
+        letter-spacing: -.055em;
+      }
+
+      .sub { margin-top: 26px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <div class="mark">Damien Jadin</div>
+      <div>Director · VFX Artist · Creative</div>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow">New website coming soon</p>
+      <h1>DAMIEN<br>JADIN</h1>
+      <p class="sub">
+        A new portfolio is currently in development.
+        For work, collaborations or enquiries, feel free to get in touch.
+      </p>
+      <div class="divider"></div>
+    </section>
+
+    <footer class="footer">
+      <div>Brussels · Belgium</div>
+      <a class="contact" href="mailto:damjad@hotmail.com">damjad@hotmail.com</a>
+    </footer>
+  </main>
+</body>
+</html>
