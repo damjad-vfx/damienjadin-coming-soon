@@ -9,20 +9,48 @@
   const idx=(prefix,i)=>`${prefix} · ${String(i+1).padStart(2,'0')}`;
   const vimeoId=p=>String(p.vimeo||'').match(/\d+/)?.[0]||'';
 
-  function applyAppearance(){
+  function normalizedAppearance(){
     const a=C.appearance||{};
-    const dark=a.darkBackground||'#050505', light=a.lightBackground||'#ebe9e2', text=a.textOnDark||'#f3f3ef', accent=a.accent||'#f3f3ef';
+    const dark=a.darkPages||{
+      background:a.darkBackground||'#050505',
+      text:a.textOnDark||'#f3f3ef',
+      secondary:'#a8a8a5',
+      accent:a.accent||'#f3f3ef'
+    };
+    const editorial=a.editorialPages||{
+      background:a.lightBackground||'#ebe9e2',
+      text:'#111111',
+      secondary:'#5f5f59',
+      accent:'#111111'
+    };
+    return {dark,editorial};
+  }
+  function applyAppearance(){
+    const {dark,editorial}=normalizedAppearance();
+    const file=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+    const editorialPage=file==='vfx-work.html'||file==='motion-design.html';
+    const darkPage=file==='ai-video.html'||file==='clips-promo.html'||file==='cinema.html';
     document.getElementById('dj-admin-theme')?.remove();
     const style=document.createElement('style');
     style.id='dj-admin-theme';
-    style.textContent=`
-      :root{--dj-dark:${dark};--dj-light:${light};--dj-text:${text};--dj-accent:${accent};--black:${dark};--paper:${light}}
-      body{background-color:var(--dj-dark)}
-      .black-section,.films-hub,.contact-section,.project-page,.project-page-main{background-color:var(--dj-dark)!important;color:var(--dj-text)!important}
-      .black-section h1,.black-section h2,.black-section h3,.films-hub h1,.films-hub h2,.films-hub h3,.contact-section h1,.contact-section h2,.contact-section h3,.project-page h1,.project-page h2,.project-page h3{color:var(--dj-text)!important}
-      .head,.showcase,.about-section,.light-section{background-color:var(--dj-light)!important}
-      a:hover,.hero-vfx-cta:hover,.promo-open:hover{color:var(--dj-accent)!important}
-    `;
+    if(editorialPage){
+      style.textContent=`
+        :root{--paper:${editorial.background};--ink:${editorial.text};--dj-editorial-bg:${editorial.background};--dj-editorial-text:${editorial.text};--dj-editorial-secondary:${editorial.secondary};--dj-editorial-accent:${editorial.accent}}
+        html,body,main,.head,.showcase{background:var(--dj-editorial-bg)!important;color:var(--dj-editorial-text)!important}
+        .site-head{background:var(--dj-editorial-bg)!important;color:var(--dj-editorial-text)!important}
+        .brand,.back,.lang button,.head h1,.head h2,.head h3,.copy h2,.copy a{color:var(--dj-editorial-text)!important}
+        .head p,.copy p,.idx{color:var(--dj-editorial-secondary)!important}
+        .copy a:hover,.back:hover,.lang button:hover{color:var(--dj-editorial-accent)!important}
+      `;
+    }else if(darkPage){
+      style.textContent=`
+        :root{--black:${dark.background};--white:${dark.text};--dj-dark-bg:${dark.background};--dj-dark-text:${dark.text};--dj-dark-secondary:${dark.secondary};--dj-dark-accent:${dark.accent}}
+        html,body,.project-page,.project-page-main,.black-section,.films-hub,.contact-section,footer{background:var(--dj-dark-bg)!important;color:var(--dj-dark-text)!important}
+        .project-page h1,.project-page h2,.project-page h3,.promo-meta h2,.promo-meta a,.project-intro h1,.project-intro h2,.topbar a{color:var(--dj-dark-text)!important}
+        .project-page p,.project-intro p,.promo-meta .year,.promo-meta p,.back-link,.eyebrow{color:var(--dj-dark-secondary)!important}
+        .promo-open:hover,.project-page a:hover,.topbar a:hover{color:var(--dj-dark-accent)!important}
+      `;
+    }
     document.head.appendChild(style);
   }
   applyAppearance();
