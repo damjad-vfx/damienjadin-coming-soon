@@ -12,6 +12,7 @@
   function applyAppearance(){
     const a=C.appearance||{};
     const dark=a.darkBackground||'#050505', light=a.lightBackground||'#ebe9e2', text=a.textOnDark||'#f3f3ef', accent=a.accent||'#f3f3ef';
+    document.getElementById('dj-admin-theme')?.remove();
     const style=document.createElement('style');
     style.id='dj-admin-theme';
     style.textContent=`
@@ -26,12 +27,34 @@
   }
   applyAppearance();
 
+  function hydrateEditorialPosters(host){
+    host.querySelectorAll('.poster[data-vimeo]').forEach(card=>{
+      const id=card.dataset.vimeo, img=card.querySelector('.poster-image');
+      if(img&&id){
+        fetch(`https://vimeo.com/api/oembed.json?url=${encodeURIComponent('https://vimeo.com/'+id)}&width=1280`)
+          .then(r=>r.ok?r.json():Promise.reject())
+          .then(d=>{if(d.thumbnail_url)img.style.backgroundImage=`url("${d.thumbnail_url}")`})
+          .catch(()=>{});
+      }
+      const play=()=>{
+        if(card.classList.contains('playing')||card.classList.contains('is-playing')||!id)return;
+        const f=document.createElement('iframe');
+        f.src=`https://player.vimeo.com/video/${id}?autoplay=1&title=0&byline=0&portrait=0&badge=0&dnt=1`;
+        f.title=card.getAttribute('aria-label')||'Vimeo video';
+        f.allow='autoplay; fullscreen; picture-in-picture'; f.allowFullscreen=true;
+        card.classList.add('playing','is-playing'); card.appendChild(f);
+      };
+      card.addEventListener('click',play);
+      card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();play()}});
+    });
+  }
   function renderEditorial(key,prefix){
     const host=document.querySelector('.showcase'); if(!host||!C.projects?.[key]) return;
     host.innerHTML=visible(C.projects[key]).map((p,i)=>`<article class="project" data-project-id="${esc(p.id)}">
       <div class="poster" data-vimeo="${esc(vimeoId(p))}" tabindex="0" role="button" aria-label="Lire ${esc(p.title)}"><div class="poster-image"></div><span class="play"></span></div>
       <div class="copy"><span class="idx">${idx(prefix,i)}</span><h2>${esc(p.title)}</h2><p data-project-desc="${esc(p.id)}">${esc(desc(p))}</p><a href="${esc(p.url||('https://vimeo.com/'+vimeoId(p)))}" target="_blank" rel="noopener" data-i18n="watch" data-dynamic-watch>Voir sur Vimeo</a></div>
     </article>`).join('');
+    hydrateEditorialPosters(host);
   }
   function renderPromo(key){
     const host=document.querySelector('.promo-list'); if(!host||!C.projects?.[key]) return;
