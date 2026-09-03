@@ -9,6 +9,23 @@
   const idx=(prefix,i)=>`${prefix} · ${String(i+1).padStart(2,'0')}`;
   const vimeoId=p=>String(p.vimeo||'').match(/\d+/)?.[0]||'';
 
+  function applyAppearance(){
+    const a=C.appearance||{};
+    const dark=a.darkBackground||'#050505', light=a.lightBackground||'#ebe9e2', text=a.textOnDark||'#f3f3ef', accent=a.accent||'#f3f3ef';
+    const style=document.createElement('style');
+    style.id='dj-admin-theme';
+    style.textContent=`
+      :root{--dj-dark:${dark};--dj-light:${light};--dj-text:${text};--dj-accent:${accent};--black:${dark};--paper:${light}}
+      body{background-color:var(--dj-dark)}
+      .black-section,.films-hub,.contact-section,.project-page,.project-page-main{background-color:var(--dj-dark)!important;color:var(--dj-text)!important}
+      .black-section h1,.black-section h2,.black-section h3,.films-hub h1,.films-hub h2,.films-hub h3,.contact-section h1,.contact-section h2,.contact-section h3,.project-page h1,.project-page h2,.project-page h3{color:var(--dj-text)!important}
+      .head,.showcase,.about-section,.light-section{background-color:var(--dj-light)!important}
+      a:hover,.hero-vfx-cta:hover,.promo-open:hover{color:var(--dj-accent)!important}
+    `;
+    document.head.appendChild(style);
+  }
+  applyAppearance();
+
   function renderEditorial(key,prefix){
     const host=document.querySelector('.showcase'); if(!host||!C.projects?.[key]) return;
     host.innerHTML=visible(C.projects[key]).map((p,i)=>`<article class="project" data-project-id="${esc(p.id)}">
@@ -28,12 +45,10 @@
   if(file==='motion-design.html') renderEditorial('motion','MOTION');
   if(file==='ai-video.html') renderPromo('ai');
   if(file==='clips-promo.html') renderPromo('promo');
-  // Cinema keeps its bespoke festival layout; update only its editable core fields.
   if(file==='cinema.html'&&C.projects?.cinema?.[0]){
     const p=C.projects.cinema[0], id=vimeoId(p), art=document.querySelector('.promo-project');
     if(art){const h=art.querySelector('h2'); if(h)h.textContent=p.title; const y=art.querySelector('.year'); if(y)y.textContent=p.year||''; const f=art.querySelector('iframe'); if(f){f.src=`https://player.vimeo.com/video/${id}?dnt=1&title=0&byline=0&portrait=0`;f.title=p.title+(p.year?' - '+p.year:'')}; const a=art.querySelector('.promo-open'); if(a)a.href=p.url||('https://vimeo.com/'+id);}
   }
-
   function updateDescriptions(){
     const l=lang();
     document.querySelectorAll('[data-project-desc]').forEach(el=>{
@@ -45,7 +60,6 @@
   }
   updateDescriptions();
   document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>setTimeout(updateDescriptions,0)));
-  // Keep hero demo-reel CTA in sync with first visible VFX project.
   if(file==='index.html'||file===''){
     const first=visible(C.projects?.vfx||[])[0]; const cta=document.querySelector('.hero-vfx-cta'); if(first&&cta)cta.href=first.url||('https://vimeo.com/'+vimeoId(first));
     if(C.site){document.querySelectorAll('a[href^="mailto:"]').forEach(a=>a.href='mailto:'+C.site.email);}
