@@ -1,11 +1,19 @@
 window.SITE_CONTENT = {
-  "version": 2,
-  "updated": "2026-09-02",
+  "version": 3,
+  "updated": "2026-09-04",
   "appearance": {
-    "darkBackground": "#050505",
-    "lightBackground": "#ebe9e2",
-    "textOnDark": "#f3f3ef",
-    "accent": "#f3f3ef"
+    "darkPages": {
+      "background": "#050505",
+      "text": "#f3f3ef",
+      "secondary": "#a8a8a5",
+      "accent": "#f3f3ef"
+    },
+    "editorialPages": {
+      "background": "#ebe9e2",
+      "text": "#111111",
+      "secondary": "#5f5f59",
+      "accent": "#111111"
+    }
   },
   "projects": {
     "vfx": [
