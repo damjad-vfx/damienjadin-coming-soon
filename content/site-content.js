@@ -1,6 +1,12 @@
 window.SITE_CONTENT = {
-  "version": 1,
+  "version": 2,
   "updated": "2026-09-02",
+  "appearance": {
+    "darkBackground": "#050505",
+    "lightBackground": "#ebe9e2",
+    "textOnDark": "#f3f3ef",
+    "accent": "#f3f3ef"
+  },
   "projects": {
     "vfx": [
       {
