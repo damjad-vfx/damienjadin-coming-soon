@@ -60,7 +60,7 @@ window.SITE_CONTENT = {
     "motion": [
       {
         "id": "ho",
-        "title": "H&O",
+        "title": "H&O CryoPen",
         "year": "2020",
         "description": {
           "fr": "Présentation avec vue explosée",
