@@ -86,7 +86,7 @@ window.SITE_CONTENT = {
       },
       {
         "id": "atlas-workshop",
-        "title": "Atlas Workshop Présentation",
+        "title": "Atlas Workshop",
         "year": "2026",
         "description": {
           "fr": "Présentation",
