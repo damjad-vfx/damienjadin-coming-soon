@@ -9,7 +9,7 @@ window.SITE_CONTENT = {
       "accent": "#f3f3ef"
     },
     "editorialPages": {
-      "background": "#d8d3c7",
+      "background": "#eae9e3",
       "text": "#111111",
       "secondary": "#5f5f59",
       "accent": "#111111"
