@@ -11,20 +11,22 @@
 
   function normalizedAppearance(){
     const a=C.appearance||{};
-    const dark=a.darkPages||{
-      background:a.darkBackground||'#050505',
-      text:a.textOnDark||'#f3f3ef',
-      secondary:'#a8a8a5',
-      accent:a.accent||'#f3f3ef'
+    return {
+      dark:{
+        background:a.darkPages?.background||a.darkBackground||'#050505',
+        text:a.darkPages?.text||a.textOnDark||'#f3f3ef',
+        secondary:a.darkPages?.secondary||'#a8a8a5',
+        accent:a.darkPages?.accent||a.accent||'#f3f3ef'
+      },
+      editorial:{
+        background:a.editorialPages?.background||a.lightBackground||'#ebe9e2',
+        text:a.editorialPages?.text||'#111111',
+        secondary:a.editorialPages?.secondary||'#5f5f59',
+        accent:a.editorialPages?.accent||'#111111'
+      }
     };
-    const editorial=a.editorialPages||{
-      background:a.lightBackground||'#ebe9e2',
-      text:'#111111',
-      secondary:'#5f5f59',
-      accent:'#111111'
-    };
-    return {dark,editorial};
   }
+
   function applyAppearance(){
     const {dark,editorial}=normalizedAppearance();
     const file=(location.pathname.split('/').pop()||'index.html').toLowerCase();
@@ -33,25 +35,34 @@
     document.getElementById('dj-admin-theme')?.remove();
     const style=document.createElement('style');
     style.id='dj-admin-theme';
+
     if(editorialPage){
       style.textContent=`
-        :root{--paper:${editorial.background};--ink:${editorial.text};--dj-editorial-bg:${editorial.background};--dj-editorial-text:${editorial.text};--dj-editorial-secondary:${editorial.secondary};--dj-editorial-accent:${editorial.accent}}
-        html,body,main,.head,.showcase{background:var(--dj-editorial-bg)!important;color:var(--dj-editorial-text)!important}
-        .site-head{background:var(--dj-editorial-bg)!important;color:var(--dj-editorial-text)!important}
-        .brand,.back,.lang button,.head h1,.head h2,.head h3,.copy h2,.copy a{color:var(--dj-editorial-text)!important}
-        .head p,.copy p,.idx{color:var(--dj-editorial-secondary)!important}
-        .copy a:hover,.back:hover,.lang button:hover{color:var(--dj-editorial-accent)!important}
+        :root{--paper:${editorial.background}!important;--ink:${editorial.text}!important;--muted:${editorial.secondary}!important}
+        html,body,main,.head,.showcase,.project,.site-head{background:${editorial.background}!important;color:${editorial.text}!important}
+        body::before,body::after,main::before,main::after{background:${editorial.background}!important}
+        .site-head{background:${editorial.background}!important;border-bottom-color:color-mix(in srgb, ${editorial.text} 12%, transparent)!important}
+        .brand,.back,.eyebrow,h1,.copy h2,.copy a,.lang button.active{color:${editorial.text}!important}
+        .head p,.copy p,.copy .idx,.lang button{color:${editorial.secondary}!important}
+        .project{border-top-color:color-mix(in srgb, ${editorial.text} 18%, transparent)!important}
+        .copy a{border-bottom-color:${editorial.text}!important}
+        .copy a:hover,.back:hover,.lang button:hover{color:${editorial.accent}!important}
+        @media(max-width:600px){.site-head{background:${editorial.background}!important}}
       `;
     }else if(darkPage){
       style.textContent=`
-        :root{--black:${dark.background};--white:${dark.text};--dj-dark-bg:${dark.background};--dj-dark-text:${dark.text};--dj-dark-secondary:${dark.secondary};--dj-dark-accent:${dark.accent}}
-        html,body,.project-page,.project-page-main,.black-section,.films-hub,.contact-section,footer{background:var(--dj-dark-bg)!important;color:var(--dj-dark-text)!important}
-        .project-page h1,.project-page h2,.project-page h3,.promo-meta h2,.promo-meta a,.project-intro h1,.project-intro h2,.topbar a{color:var(--dj-dark-text)!important}
-        .project-page p,.project-intro p,.promo-meta .year,.promo-meta p,.back-link,.eyebrow{color:var(--dj-dark-secondary)!important}
-        .promo-open:hover,.project-page a:hover,.topbar a:hover{color:var(--dj-dark-accent)!important}
+        :root{--black:${dark.background}!important;--white:${dark.text}!important}
+        html,body,.project-page,.project-page-main,.project-page-shell,.project-page-head,.promo-list,.promo-project,footer{background:${dark.background}!important;color:${dark.text}!important}
+        .topbar{background:${dark.background}!important;color:${dark.text}!important}
+        .project-page h1,.project-page h2,.project-page h3,.project-page-head h1,.promo-meta h2,.promo-meta a,.topbar a,.brand{color:${dark.text}!important}
+        .project-page p,.project-page-head p,.promo-meta .year,.promo-meta p,.project-back,.eyebrow,.topbar .lang button{color:${dark.secondary}!important}
+        .promo-open:hover,.project-page a:hover,.topbar a:hover,.project-back:hover{color:${dark.accent}!important}
+        .project-page-head,.promo-project{border-color:color-mix(in srgb, ${dark.text} 14%, transparent)!important}
+        @media(max-width:600px){.topbar,.mobile-menu-panel{background:${dark.background}!important}}
       `;
     }
     document.head.appendChild(style);
+    document.documentElement.setAttribute('data-dj-theme-applied', editorialPage?'editorial':(darkPage?'dark':'none'));
   }
   applyAppearance();
 
