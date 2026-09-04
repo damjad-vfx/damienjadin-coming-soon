@@ -20,7 +20,7 @@ window.SITE_CONTENT = {
       {
         "id": "vfx-demo",
         "title": "VFX Demo Reel",
-        "year": "",
+        "year": "2022",
         "description": {
           "fr": "Compositing · Visual Effects",
           "en": "Compositing · Visual Effects",
@@ -33,7 +33,7 @@ window.SITE_CONTENT = {
       {
         "id": "demoiselle",
         "title": "L’île de la demoiselle",
-        "year": "",
+        "year": "2025",
         "description": {
           "fr": "VFX Breakdown",
           "en": "VFX Breakdown",
@@ -46,7 +46,7 @@ window.SITE_CONTENT = {
       {
         "id": "visual-artist-studio",
         "title": "Visual Artist Studio",
-        "year": "",
+        "year": "2025",
         "description": {
           "fr": "Visual Effects",
           "en": "Visual Effects",
@@ -61,7 +61,7 @@ window.SITE_CONTENT = {
       {
         "id": "ho",
         "title": "H&O",
-        "year": "",
+        "year": "2020",
         "description": {
           "fr": "Présentation avec vue explosée",
           "en": "Exploded-view presentation",
@@ -74,7 +74,7 @@ window.SITE_CONTENT = {
       {
         "id": "bee-casting",
         "title": "BEE Casting",
-        "year": "",
+        "year": "2022",
         "description": {
           "fr": "Une abeille passe un casting",
           "en": "A bee goes to a casting",
@@ -86,8 +86,8 @@ window.SITE_CONTENT = {
       },
       {
         "id": "atlas-workshop",
-        "title": "Atlas Workshop - Présentation",
-        "year": "",
+        "title": "Atlas Workshop Présentation",
+        "year": "2026",
         "description": {
           "fr": "Présentation",
           "en": "Presentation",
@@ -100,7 +100,7 @@ window.SITE_CONTENT = {
       {
         "id": "concept-us",
         "title": "Concept.us",
-        "year": "",
+        "year": "2019",
         "description": {
           "fr": "Animation de logo",
           "en": "Logo animation",
