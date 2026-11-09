@@ -9,7 +9,7 @@ window.SITE_CONTENT = {
       "accent": "#f3f3ef"
     },
     "editorialPages": {
-      "background": "#eae9e3",
+      "background": "#ebe9e2",
       "text": "#111111",
       "secondary": "#5f5f59",
       "accent": "#111111"
@@ -20,7 +20,7 @@ window.SITE_CONTENT = {
       {
         "id": "vfx-demo",
         "title": "VFX Demo Reel",
-        "year": "2022",
+        "year": "",
         "description": {
           "fr": "Compositing · Visual Effects",
           "en": "Compositing · Visual Effects",
@@ -33,7 +33,7 @@ window.SITE_CONTENT = {
       {
         "id": "demoiselle",
         "title": "L’île de la demoiselle",
-        "year": "2025",
+        "year": "",
         "description": {
           "fr": "VFX Breakdown",
           "en": "VFX Breakdown",
@@ -46,7 +46,7 @@ window.SITE_CONTENT = {
       {
         "id": "visual-artist-studio",
         "title": "Visual Artist Studio",
-        "year": "2025",
+        "year": "",
         "description": {
           "fr": "Visual Effects",
           "en": "Visual Effects",
@@ -60,8 +60,8 @@ window.SITE_CONTENT = {
     "motion": [
       {
         "id": "ho",
-        "title": "H&O CryoPen",
-        "year": "2020",
+        "title": "H&O",
+        "year": "",
         "description": {
           "fr": "Présentation avec vue explosée",
           "en": "Exploded-view presentation",
@@ -74,7 +74,7 @@ window.SITE_CONTENT = {
       {
         "id": "bee-casting",
         "title": "BEE Casting",
-        "year": "2022",
+        "year": "",
         "description": {
           "fr": "Une abeille passe un casting",
           "en": "A bee goes to a casting",
@@ -86,8 +86,8 @@ window.SITE_CONTENT = {
       },
       {
         "id": "atlas-workshop",
-        "title": "Atlas Workshop",
-        "year": "2026",
+        "title": "Atlas Workshop - Présentation",
+        "year": "",
         "description": {
           "fr": "Présentation",
           "en": "Presentation",
@@ -100,7 +100,7 @@ window.SITE_CONTENT = {
       {
         "id": "concept-us",
         "title": "Concept.us",
-        "year": "2019",
+        "year": "",
         "description": {
           "fr": "Animation de logo",
           "en": "Logo animation",
@@ -209,6 +209,17 @@ window.SITE_CONTENT = {
         "visible": true
       }
     ]
+  },
+  "news": {
+    "visible": true,
+    "title": {
+      "fr": "What if… Chewie dépasse le million de vues !",
+      "en": "What if… Chewie hits one million views!",
+      "es": "¡What if… Chewie supera el millón de visualizaciones!"
+    },
+    "mediaUrl": "",
+    "linkUrl": "https://www.instagram.com/damien_jadin/",
+    "linkLabel": {"fr": "Voir sur Instagram", "en": "View on Instagram", "es": "Ver en Instagram"}
   },
   "site": {
     "email": "hello@damienjadin.com",

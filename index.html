@@ -694,6 +694,29 @@ footer{background:#050505;color:#777;border-top:1px solid #1b1b1b;padding:22px 4
   .bee .a2{right:9px!important;left:auto!important;transform:rotate(26deg)!important}
 }
 
+
+/* V37 NEWS — section indépendante, sans changement des autres sections */
+.dj-news{background:#ebe9e2;color:#111;padding:clamp(64px,8vw,120px) max(5%,calc((100vw - 1500px)/2));scroll-margin-top:55px}
+.dj-news-inner{max-width:1500px;margin:auto}.dj-news-heading{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid #bbb8b0;padding-bottom:20px;margin-bottom:34px}
+.dj-news-eyebrow,.dj-news-index{font-size:11px;letter-spacing:.22em;text-transform:uppercase}
+.dj-news-index{color:#777}.dj-news-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(30px,5vw,90px);align-items:center}
+.dj-news-copy h2{font-size:clamp(40px,5.8vw,94px);font-weight:400;letter-spacing:-.065em;line-height:1.04;margin:0 0 38px;overflow-wrap:anywhere}
+.dj-news-copy a{display:inline-block;color:inherit;text-transform:uppercase;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:8px;font-size:11px;letter-spacing:.14em}
+.dj-news-media{aspect-ratio:16/10;min-width:0;background:#111;overflow:hidden}.dj-news-media img,.dj-news-media video,.dj-news-media iframe{display:block;width:100%;height:100%;object-fit:cover;border:0}
+.dj-news-placeholder{height:100%;display:flex;align-items:center;justify-content:space-around;color:#eee;background:#171717;font-size:clamp(38px,6vw,110px);letter-spacing:-.07em}.dj-news-placeholder b{font-size:.5em;font-weight:400}
+.dj-news-jump{display:block;width:max-content;margin-top:22px;color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.7);padding-bottom:8px;font-size:11px;letter-spacing:.18em;position:relative;z-index:4}
+.dj-news-jump span{padding-left:10px}.dj-news[hidden]{display:none!important}
+@media(max-width:700px){.dj-news{padding:65px 5% 75px}.dj-news-layout{grid-template-columns:1fr}.dj-news-copy h2{font-size:clamp(40px,11vw,72px)}.dj-news-media{aspect-ratio:4/3}.dj-news-index{font-size:9px}}
+
+/* V37 — lien NEWS du hero, juste sous le CTA VFX */
+.hero-copy .dj-news-jump{display:flex;align-items:center;gap:11px;width:max-content;max-width:100%;margin-top:18px;padding:7px 0 9px;border-bottom:1px solid rgba(255,255,255,.65);color:#fff;text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.21em;line-height:1.4;position:relative;z-index:5;transition:opacity .2s ease,border-color .2s ease}
+.hero-copy .dj-news-jump:hover{opacity:.78;border-color:#fff}
+.hero-copy .dj-news-jump .dj-news-star{padding:0;color:#fff;font-size:21px;line-height:1;animation:dj-news-twinkle 2.8s ease-in-out infinite;transform-origin:center}
+.hero-copy .dj-news-jump .dj-news-label,.hero-copy .dj-news-jump .dj-news-arrow{padding:0}
+.hero-copy .dj-news-jump .dj-news-arrow{font-size:15px;letter-spacing:0}
+@keyframes dj-news-twinkle{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.58;transform:scale(.78)}}
+@media(prefers-reduced-motion:reduce){.hero-copy .dj-news-jump .dj-news-star{animation:none}}
+@media(max-width:600px){.hero-copy .dj-news-jump{margin-top:15px;font-size:11px;gap:9px}}
 </style>
 </head>
 <body>
@@ -738,8 +761,18 @@ footer{background:#050505;color:#777;border-top:1px solid #1b1b1b;padding:22px 4
 <p class="suptitle">DIRECTOR · VFX ARTIST · CREATIVE</p>
 <h1>DAMIEN<br/>JADIN</h1>
 <p class="intro" data-i18n="hero.intro">Images, effets visuels et récits.</p>
-<a class="hero-vfx-cta" data-i18n="hero.vfxDemo" href="https://vimeo.com/748541062?fl=pl&amp;fe=sh" rel="noopener noreferrer" target="_blank">Voir VFX Demo Reel ↗</a></div>
+<a class="hero-vfx-cta" data-i18n="hero.vfxDemo" href="https://vimeo.com/748541062?fl=pl&amp;fe=sh" rel="noopener noreferrer" target="_blank">Voir VFX Demo Reel ↗</a>
+<a class="dj-news-jump" href="#news" aria-label="Découvrir les actualités"><span class="dj-news-star" aria-hidden="true">✦</span><span class="dj-news-label">NEWS</span><span class="dj-news-arrow" aria-hidden="true">↘</span></a></div>
 <a class="discover" href="#projects"><span data-i18n="hero.discover">Découvrir</span><b>↓</b></a>
+</section>
+<section class="dj-news" id="news" aria-label="Actualités">
+  <div class="dj-news-inner">
+    <div class="dj-news-heading"><span class="dj-news-eyebrow" id="dj-news-eyebrow">ACTUALITÉS / NEWS</span><span class="dj-news-index">01 / À LA UNE</span></div>
+    <div class="dj-news-layout">
+      <div class="dj-news-copy"><h2 id="dj-news-title">What if… Chewie dépasse le million de vues !</h2><a id="dj-news-link" href="https://www.instagram.com/damien_jadin/" target="_blank" rel="noopener noreferrer">Voir sur Instagram ↗</a></div>
+      <div class="dj-news-media" id="dj-news-media"><div class="dj-news-placeholder" aria-hidden="true"><span>NEWS</span><b>↗</b></div></div>
+    </div>
+  </div>
 </section>
 <section class="black-section projects-intro" id="projects">
 <div class="statement">
@@ -1012,5 +1045,31 @@ if(menuToggle&&mobileNav){
 
 <script src="content/site-content.js?v=37"></script>
 <script src="assets/js/content-runtime.js?v=37"></script>
+<script>
+/* NEWS: rendu du contenu publié ou de l'aperçu local, sans toucher aux projets */
+(function(){
+  const section=document.getElementById('news');if(!section)return;
+  let c=window.SITE_CONTENT||{};
+  try{const draft=localStorage.getItem('djAdminPreviewContent');if(draft)c=JSON.parse(draft)||c;}catch(e){}
+  const n=c.news||{};section.hidden=n.visible===false;
+  const language=()=>{const l=(document.documentElement.lang||'fr').toLowerCase().slice(0,2);return ['fr','en','es'].includes(l)?l:'fr'};
+  const tr=(v,l)=>typeof v==='string'?v:(v?.[l]||v?.fr||v?.en||'');
+  const valid=(u)=>{try{const a=new URL(u,location.href);return ['http:','https:'].includes(a.protocol)?a.href:null}catch(e){return null}};
+  function update(){const l=language();document.getElementById('dj-news-title').textContent=tr(n.title,l)||'News';
+    document.getElementById('dj-news-eyebrow').textContent=l==='es'?'ACTUALIDAD / NEWS':l==='en'?'LATEST / NEWS':'ACTUALITÉS / NEWS';
+    const a=document.getElementById('dj-news-link'),url=valid(n.linkUrl);a.hidden=!url;if(url)a.href=url;a.textContent=(tr(n.linkLabel,l)||({fr:'En savoir plus',en:'Learn more',es:'Más información'}[l]))+' ↗';
+    const m=document.getElementById('dj-news-media');m.replaceChildren();const u=valid(n.mediaUrl);let node;
+    if(u){const youtube=u.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/),vimeo=u.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+      if(youtube||vimeo){node=document.createElement('iframe');node.src=youtube?'https://www.youtube-nocookie.com/embed/'+youtube[1]:'https://player.vimeo.com/video/'+vimeo[1];node.title='News video';node.loading='lazy';node.allow='accelerometer; autoplay; encrypted-media; picture-in-picture; fullscreen';node.allowFullscreen=true;}
+      else if(/\.(?:mp4|webm|mov)(?:[?#]|$)/i.test(u)){node=document.createElement('video');node.src=u;node.controls=true;node.preload='metadata';}
+      else if(/\.(?:png|jpe?g|webp|gif|avif)(?:[?#]|$)/i.test(u)){node=document.createElement('img');node.src=u;node.alt=tr(n.title,l);node.loading='lazy';}
+    }
+    if(!node){node=document.createElement('div');node.className='dj-news-placeholder';const span=document.createElement('span');span.textContent='NEWS';const b=document.createElement('b');b.textContent='↗';node.append(span,b);}
+    m.append(node);
+  }
+  update();const observer=new MutationObserver(update);observer.observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+})();
+</script>
+
 </body>
 </html>
